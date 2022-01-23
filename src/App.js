@@ -1,24 +1,36 @@
-import logo from './logo.svg';
+import { Container, Grid } from "@mui/material";
+import React from "react";
+import MenuAppBar from "./components/appbar";
 import './App.css';
-
+import Featuredpost from "./components/Featurpost";
+import { featuredPosts } from "./data";
+import PostCards from "./components/PostCards";
+import { dummydata } from "./dummydata";
+import ChargingCards from "./components/chargingcards";
+import BottomBar from "./components/bottombar";
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      <MenuAppBar />
+      <Featuredpost />
+      <br />
+      <Grid container spacing={4}>
+        {
+          featuredPosts.map((post, index) => (
+              <PostCards key={index} post={post} />
+          ))
+        }
+      </Grid>
+      <br />
+      <Grid container spacing={4} mb={20}>
+        {
+          dummydata.map((data,index) =>(
+            <ChargingCards key={data.id} data={data} />
+          ))
+        }
+      </Grid>
+      <BottomBar />
+    </Container>
   );
 }
 
